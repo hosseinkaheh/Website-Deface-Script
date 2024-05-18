@@ -1,0 +1,524 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title></title>
+</head>
+<body oncontextmenu="return false;" ondragstart="return false" onkeydown="return false;" onload="animate();start()" onmousedown="context.fillStyle='rgba(0,0,0,'+opacity+')'" onmouseup="context.fillStyle='rgb(0,0,0)'" onorientationchange="resize()" onresize="resize()" onselectstart="return false" style="-moz-user-select: none; cursor: default;">
+<p>&nbsp;
+<p></p>
+</p>
+</body>
+</html>
+<p><br />
+<title></title>
+<style type="text/css">*,html,body,div,p,h2{padding: 0px;margin: 4px;}body{background: #container{margin: 0 auto;width: 980px;padding-top: 40px;}#content-container{float: left;width: 980px;}#content{clear: left;float: left;width: 581px;padding: 20px 0 20px 0;margin: 0 0 0 30px;play: inline;color: #333;}#content h2 {font-family: Cambria;font-size: 170px;}#aside{float: right;width: 348px;padding: 0px;display: inline;background-image: url('http://');height: 376px;}.hacker{float: right;font-family: Cambria;font-size: 30px;font-weight: bold;}.notes{padding-top: 90px;line-height: 1.3em;font-weight: bold;font-size: 16px;font-family: "Courier New";}.contact{padding-top: 30px;font-size: 18px;font-family: "Courier New", Courier, monospace;font-weight: bold;color: #800000;}#music{padding: 80px 80px 0px 0px;float: right;clear: right;}.STYLE1 {
+      padding-top: 20px;
+      line-height: 1.3em;
+      font-weight: bold;
+      font-size: 15px;
+      font-family: "Courier New";
+      border-width: 100;
+      width: 900px;
+      }
+      .STYLE4 {color: #990000}
+      .STYLE5 {color: #00FF00}
+      .STYLE9 {color: #33FF00}
+      body,td,th {
+      color: #FFFFFF;
+      }
+      .STYLE10 {color: maroon}
+      .STYLE11 {color: #FF0000}
+</style>
+<script type="text/javascript">/*<![CDATA[*/ 
+      TypingText = function(element, interval, cursor, finishedCallback) {
+      
+       
+      
+        if((typeof document.getElementById == "undefined") || (typeof element.innerHTML == "undefined")) {
+      
+       
+      
+          this.running = true;
+      
+       
+      
+          return;
+      
+       
+      
+        }
+      
+       
+      
+        this.element = element;
+      
+       
+      
+        this.finishedCallback = (finishedCallback ? finishedCallback : function() { return; });
+      
+       
+      
+        this.interval = (typeof interval == "undefined" ? 100 : interval);
+      
+       
+      
+        this.origText = this.element.innerHTML;
+      
+       
+      
+        this.unparsedOrigText = this.origText;
+      
+       
+      
+        this.cursor = (cursor ? cursor : "");
+      
+       
+      
+        this.currentText = "";
+      
+       
+      
+        this.currentChar = 0;
+      
+       
+      
+        this.element.typingText = this;
+      
+       
+      
+        if(this.element.id == "") this.element.id = "typingtext" + TypingText.currentIndex++;
+      
+       
+      
+        TypingText.all.push(this);
+      
+       
+      
+        this.running = false;
+      
+       
+      
+        this.inTag = false;
+      
+       
+      
+        this.tagBuffer = "";
+      
+       
+      
+        this.inHTMLEntity = false;
+      
+       
+      
+        this.HTMLEntityBuffer = "";
+      
+       
+      
+      }
+      
+       
+      
+      TypingText.all = new Array();
+      
+       
+      
+      TypingText.currentIndex = 0;
+      
+       
+      
+      TypingText.runAll = function() {
+      
+       
+      
+        for(var i = 0; i < TypingText.all.length; i++) TypingText.all[i].run();
+      
+       
+      
+      }
+      
+       
+      
+      TypingText.prototype.run = function() {
+      
+       
+      
+        if(this.running) return;
+      
+       
+      
+        if(typeof this.origText == "undefined") {
+      
+       
+      
+          setTimeout("document.getElementById('" + this.element.id + "').typingText.run()", this.interval);
+      
+       
+      
+          return;
+      
+       
+      
+        }
+      
+       
+      
+        if(this.currentText == "") this.element.innerHTML = "";
+      
+       
+      
+        if(this.currentChar < this.origText.length) {
+      
+       
+      
+          if(this.origText.charAt(this.currentChar) == "<" && !this.inTag) {
+      
+       
+      
+            this.tagBuffer = "<";
+      
+       
+      
+            this.inTag = true;
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else if(this.origText.charAt(this.currentChar) == ">" && this.inTag) {
+      
+       
+      
+            this.tagBuffer += ">";
+      
+       
+      
+            this.inTag = false;
+      
+       
+      
+            this.currentText += this.tagBuffer;
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else if(this.inTag) {
+      
+       
+      
+            this.tagBuffer += this.origText.charAt(this.currentChar);
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else if(this.origText.charAt(this.currentChar) == "&" && !this.inHTMLEntity) {
+      
+       
+      
+            this.HTMLEntityBuffer = "&";
+      
+       
+      
+            this.inHTMLEntity = true;
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else if(this.origText.charAt(this.currentChar) == ";" && this.inHTMLEntity) {
+      
+       
+      
+            this.HTMLEntityBuffer += ";";
+      
+       
+      
+            this.inHTMLEntity = false;
+      
+       
+      
+            this.currentText += this.HTMLEntityBuffer;
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else if(this.inHTMLEntity) {
+      
+       
+      
+            this.HTMLEntityBuffer += this.origText.charAt(this.currentChar);
+      
+       
+      
+            this.currentChar++;
+      
+       
+      
+            this.run();
+      
+       
+      
+            return;
+      
+       
+      
+          } else {
+      
+       
+      
+            this.currentText += this.origText.charAt(this.currentChar);
+      
+       
+      
+          }
+      
+       
+      
+          this.element.innerHTML = this.currentText;
+      
+       
+      
+          this.element.innerHTML += (this.currentChar < this.origText.length - 1 ? (typeof this.cursor == "function" ? this.cursor(this.currentText) : this.cursor) : "");
+      
+       
+      
+          this.currentChar++;
+      
+       
+      
+          setTimeout("document.getElementById('" + this.element.id + "').typingText.run()", this.interval);
+      
+       
+      
+        } else {
+      
+       
+      
+      	this.currentText = "";
+      
+       
+      
+      	this.currentChar = 0;
+      
+       
+      
+              this.running = false;
+      
+       
+      
+              this.finishedCallback();
+      
+       
+      
+        }
+      
+       
+      
+      }
+      
+       
+      
+       
+      
+       
+      
+      /*]]>*/
+   </script></p>
+
+<h1>HACKED BY ANONYMOUS  IRANIANS!!!</h1>
+
+<p class="STYLE1" id="message"><font color="green">:~# </font><span class="STYLE11">HELLO ADMIN !!!</span><br />
+<font color="green"></font> Was Here !!!<br />
+
+<br />
+<br />
+<font color="green">[+] Message : Remember this, There is not perfect security in the world.. We are only testing your security on your site..Hacking is not criminal.. but Hacking is art..<br />
+Am I <font color="green" size="3">???????? NOT FOUND 404</font><br />
+Am I located ???<br />
+Am I&nbsp;Legion ???<br />
+I do not forgive !!!<br />
+I do not forget !!!<br />
+Expect us<br />
+<br />
+<font color="green">[+] Hacked By :<
+ ANONYMOUS IRANIANS>
+<br />
+<font color="green">Good Luck&nbsp;</font></font></font></span><br />
+&nbsp;</p>
+
+<p class="notes"><font color="green"><font color="green"><font color="green">&nbsp;</font></font></font></p>
+
+<p><br />
+<font color="green"><font color="cyan"><font color="green"><script language=JavaScript type=text/javascript><!--// Method-5 animation script (compressed)
+         /***** initialize global film variables ******/
+         var frames = 31; // <---- total number of pictures in film
+         var delay = 90; // <---- delay after each frame
+         var color = "green"; // <---- Color of cat
+         var changecol = false; // <---- Randomly change color of cat? If true the cat will change colors if false the color of the cat will be the value of the color variable.
+         var move_cat = true; // <---- Move cat? If true the cat will move side to side. If false the cat will stay in one place.
+         var cat_fontsize = 10; // <---- In pixels
+         
+         /***** initialize anim screen position (in pixels) *****/
+         
+         var topp = 50; // <---- window position bottom
+         var left = (move_cat)?-20:-10; // <---- window position left
+         var width = 300; // <---- window width
+         var height = 187; // <---- window height
+         
+         
+         /***** initialize anim control variables *****/
+         
+         var posi = 0; // <---- actual picture position (frame counter)
+         var prev = 1; // <---- previous picture number
+         var run = true; // <---- boolean : true (?????) or !true (?????)
+         
+         
+         /***** initialize style sheets ****/
+         
+         document.write("<" + "style type='text/css'><" + "!-- ");
+         for (i = 0; i <= frames; i++) {
+             if (move_cat) {
+                 left = left + 2;
+             }
+             document.write("#cat" + i + " {position:absolute; color:" + color + "; font-size:" + cat_fontsize + "px; left:" + left + "%; top:" + topp + "px; width:" + width + "px; height:" + height + "px; z-index:" + i + "; visibility:hidden}");
+         }
+         document.write("--" + "><" + "/style>");
+         
+         /******* animation module ******/
+         function change_color() {
+             var colors = new Array("#6C2DC7", "#00FFFF", "#00FF00", "#FFFF00", "#FF0000", "#FF00FF", "#1589FF", "#8D38C9", "#E3319D", "#6C2DC7", "#7E354D", "#736AFF", "#306754", "#E45E9D", "#000099", "#33CC00", "#25A0C5");
+             var randomnum = Math.floor(Math.random() * 17)
+             var random_color = colors[randomnum];
+         	for(i=0;i<=frames;i++) {
+         		if(i==0) {
+         		
+         		}
+         		else {
+         			document.getElementById('cat' + i).style.color = random_color;
+         		}
+         	}
+         }
+         
+         function animate() {
+             posi = posi + 1;
+             if (posi > frames) {
+                 if (run) {
+                     if (changecol && move_cat) {
+                         setTimeout("animate2(posi-1, prev); change_color();", delay);
+                     } else if (changecol && !move_cat) {
+                         posi = 1;
+                         setTimeout("animate(); change_color();", delay);
+                     } else if (!changecol && move_cat) {
+                         setTimeout("animate2(posi-1, prev);", delay);
+                     } else if (!changecol && !move_cat) {
+                         posi = 1;
+                         setTimeout("animate();", delay);
+                     }
+                 }
+             } else {
+                 document.getElementById("cat"+ prev).style.visibility = 'hidden';
+                 document.getElementById("cat"+ posi).style.visibility = 'visible';
+                 prev = posi;
+                 if (run) setTimeout("animate()", delay);
+             }
+         }
+         
+         function animate2(posi2, prev2) {
+             posi = posi2 - 1;
+             if (posi < 1) {
+                 if (run) {
+                     if (changecol) {
+                         setTimeout("animate(); change_color();", delay);
+                     } else {
+                         setTimeout("animate();", delay);
+                     }
+                 }
+             } else {
+                 document.getElementById("cat"+ prev).style.visibility = 'hidden';
+                 document.getElementById("cat"+ posi).style.visibility = 'visible';
+                 prev = posi;
+                 if (run) setTimeout("animate2(posi, prev-1)", delay);
+             }
+         }
+         //--></SCRIPT> </font></font></font></p>
+
+<div id="cat1">
+<pre>
+<font color="white"><font color="cyan"><font color="yellow"><iframe allow="autoplay" frameborder="no" height="300" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F31644615&amp;color=%23ff5500&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
+
+</font></font></font></pre>
+</div>
+
+<p><br />
+<font color="green"><font color="green"><font color="green"><script type="text/javascript">/*<![CDATA[*/ 
+         new TypingText(document.getElementById("message"), 40, function(i){ var ar = new Array("_", " ", "_", " "); return " " + ar[i.length % ar.length]; });
+         
+          
+         
+          
+         
+          
+         
+         //Type out examples:
+         
+          
+         
+         TypingText.runAll();
+         
+          
+         
+           /*]]>*/
+
+      </script> <script type="text/javascript"> //<![CDATA[</font></font></font></p></font></font></font></p></font></font></font></p>
